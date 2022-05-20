@@ -1,0 +1,58 @@
+.table{
+    width: 100%;
+}
+.cell-font-size{
+    font-size: 35px!important;
+}
+.mt{
+    margin-top: 20px;
+
+}
+.wp-btn{
+    background-color: rgba(0, 0, 0, 0)!important;
+    font-family: 'Zen Loop', cursive!important;
+    font-weight: 600!important;
+    font-size: 35px;
+    padding: 0px;
+    width: fit-content;
+    height: fit-content;
+    border: none!important;
+    color: white;
+  }
+.btn-size{
+    width: 270px;
+    height: 90px;
+}
+.cont-btn-cart{
+    display: flex;
+    justify-content: space-around;
+}
+.total-price-font-size{
+    font-size: 50px;
+}
+
+@media (max-width: 600px) {
+    .table{
+        width: 100%!important;
+        min-width: none!important;
+    }
+    .cell-font-size{
+        font-size: 17px!important;
+        font-weight: bold;
+    }
+    .cont-btn-counter3{
+        display: flex!important;
+        justify-content: center!important;
+        align-items: center;
+        margin: 0px!important;
+    }
+    .btn-size{
+        padding: 5px!important;
+        width: 150px;
+        height: 60px;
+        font-size: 20px!important;
+    }
+    .wp-btn{
+        font-size: 20px!important;
+    }
+}

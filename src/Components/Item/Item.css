@@ -1,0 +1,75 @@
+.img-product{
+object-fit: contain!important;
+height: 300px ;
+}
+.cbold{
+    color: black!important;
+font-weight: 600!important;
+}
+.title{
+    font-size: 40px!important;
+    height: 90px;
+
+}
+.price{
+    font-size: 30px!important;
+}
+.card-product{
+    margin-bottom: 15px!important;
+    min-width: 350px;
+    max-width: 350px;
+}
+.btn{
+    background-color: grey!important;
+    color: black!important;
+    width: 190px;
+    font-size: 25px!important;
+}
+.card-content{
+    display: block!important;
+}
+.title-description{
+    text-align: center;
+    font-size: 40px;
+}
+.description{
+    font-size: 35px!important;
+}
+
+@media (max-width: 600px) {
+    .img-product{
+        object-fit: contain!important;
+        height: 140px!important;
+        }
+    .card-product{
+        margin-bottom: 15px!important;
+        min-width: 150px;
+        max-width: 150px;
+        height: 345px!important;
+    }
+    .title{
+        width: 100%!important;
+        font-size: 15px!important;
+        height: 35px;
+    }
+    .price{
+        font-size: 15px!important;
+    }
+    .btn{
+        width: 70px;
+        font-size: 8px!important;
+    }
+    .modal-desc{
+        width: 80%!important;
+    }
+    .title-description{
+        text-align: center;
+        font-size: 15px;
+    }
+    .description{
+        font-size: 25px!important;
+    }
+    .card-content{
+        padding: 0px!important;
+    }
+}
