@@ -65,7 +65,7 @@ export default function Cart() {
                     </>
                     :
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table className='table' aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell className='cell-font-size'>Nombre</TableCell>
