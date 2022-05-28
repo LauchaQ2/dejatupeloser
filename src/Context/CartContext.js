@@ -35,7 +35,7 @@ const CartProvider = ({children}) => {
 
     const clearCart = () => setProducts([]);
     
-    const removeItem = (id, quantity, size) => {
+   /* const removeItem = (id, quantity, size) => {
         const productExist = productCarts.find(productCart=>productCart.id === id && productCart.size === size)
         if (productExist.quantity === 1){
         setProducts(productCarts.filter(productCart=>productCart.size !==productExist.size && productCart.id === productExist.id));
@@ -44,7 +44,30 @@ const CartProvider = ({children}) => {
             ? {...productExist, quantity: productExist.quantity - 1}:
             productCart))
     }
-    }
+    }*/
+
+    const removeItem = (id,quantity, size) => {
+        console.log(id);
+        console.log(productCarts);
+        const productExist = productCarts.find(
+          (productCart) => productCart.id === id && productCart.size === size
+        );
+        console.log("product exist", productExist);
+        if (productExist.quantity === 1) {
+          const filteredProducts = productCarts.filter(
+            (product) => product !== productExist
+          );
+          setProducts(filteredProducts);
+        } if (productExist.quantity > 1) {
+            setProducts(productCarts.map(productCart => productCart.id === productExist.id && productCart.size === productExist.size
+                ? {...productExist, quantity: productExist.quantity - 1}:
+                productCart))
+        } else {
+            
+        } {
+            
+        }
+      };
 
     const addItem = (id, quantity, size) => {
         const ProductExist = productCarts.find(productCart=>productCart.id === id && productCart.size === size)
