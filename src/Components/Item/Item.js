@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,12 +9,17 @@ import Button from '@mui/material/Button'
 import './Item.css';
 import ItemCount from '../ItemCount/ItemCount';
 import CartContext from '../../Context/CartContext'
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 export default function Item({ product }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [size, setSize] = useState("")
 
+  const handleChange = (event) => setSize(event.target.value);
+  console.log(size)
   const style = {
     position: 'absolute',
     top: '50%',
@@ -27,7 +32,9 @@ export default function Item({ product }) {
     p: 4,
   };
 
-  const { addProducts} = useContext(CartContext)
+  const talles = product.talle;
+
+  const { addProducts } = useContext(CartContext)
 
   const itemCart = {
     title: product.nombre,
@@ -35,11 +42,12 @@ export default function Item({ product }) {
     price: product.precio,
     pictureURL: product.img,
     quantity: 1,
-}
+    size: size
+  }
 
-const onAdd = (quantity) => {
-addProducts(itemCart, quantity)
-}
+  const onAdd = (quantity) => {
+    addProducts(itemCart, quantity, size)
+  }
 
   return (
     <><Card className='card-product'>
@@ -57,9 +65,27 @@ addProducts(itemCart, quantity)
           ${product.precio}
         </Typography>
         <Button className='cbold btn' onClick={handleOpen}>Ver descripción</Button>
-        </CardContent>
-        <CardContent className='card-content'>
-        <ItemCount initial={1} onAdd={onAdd} stock={product.stock}/>
+      </CardContent>
+      <CardContent className='card-content'>
+        <Select
+          fullWidth
+          id="followers"
+          labelId="followersL"
+          margin="dense"
+          displayEmpty
+          name="followers"
+          onChange={handleChange}
+          value={size}
+          variant="outlined"
+        >
+          <MenuItem value={talles[0]}>{talles[0]}</MenuItem>
+          <MenuItem value={talles[1]}>{talles[1]}</MenuItem>
+          <MenuItem value={talles[2]}>{talles[2]}</MenuItem>
+
+        </Select>
+      </CardContent>
+      <CardContent className='card-content'>
+        <ItemCount initial={1} onAdd={onAdd} stock={product.stock} />
       </CardContent>
     </Card>
       <Modal
@@ -73,7 +99,7 @@ addProducts(itemCart, quantity)
             Descripción de producto
           </Typography>
           <Typography className='cbold description' id="modal-modal-description" sx={{ mt: 2 }}>
-           {product.descripcion}
+            {product.descripcion}
           </Typography>
         </Box>
       </Modal></>

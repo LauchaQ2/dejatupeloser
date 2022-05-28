@@ -8,18 +8,15 @@ const CartContext = createContext();
 const CartProvider = ({children}) => {
     const [open, setOpen] = useState(false);
     const [productCarts, setProducts] = useState([])
-    const [ordersByUser, setOrdersByUser] = useState([])
-    const [itemsByOrder, setItemsByOrder] = useState([])
-    const [requestOrders, setRequestOrders] = useState(false)
     
 
-    function isInCart(id) {
-        return productCarts.some(productCart => productCart.id === id);
+    function isInCart(id, size) {
+        return productCarts.some(productCart => productCart.id === id && productCart.size === size);
     }
 
     
-    const addProducts = (productCart, quantity) => {
-        if (isInCart(productCart.id)){
+    const addProducts = (productCart, quantity, size) => {
+        if (isInCart(productCart.id, size)){
             const newAddProducts = productCarts.map(currentElement=>{
                 if(currentElement.id === productCart.id){
                     console.log("el current tiene",currentElement.quantity)
@@ -38,21 +35,21 @@ const CartProvider = ({children}) => {
 
     const clearCart = () => setProducts([]);
     
-    const removeItem = (id, quantity) => {
-        const ProductExist = productCarts.find(productCart=>productCart.id === id)
-        if (ProductExist.quantity === 1){
-        setProducts(productCarts.filter(productCart=>productCart.id !==id));
+    const removeItem = (id, quantity, size) => {
+        const productExist = productCarts.find(productCart=>productCart.id === id && productCart.size === size)
+        if (productExist.quantity === 1){
+        setProducts(productCarts.filter(productCart=>productCart.size !==productExist.size && productCart.id === productExist.id));
     }else{
-        setProducts(productCarts.map(productCart => productCart.id === id 
-            ? {...ProductExist, quantity: ProductExist.quantity - 1}:
+        setProducts(productCarts.map(productCart => productCart.id === productExist.id && productCart.size === productExist.size
+            ? {...productExist, quantity: productExist.quantity - 1}:
             productCart))
     }
     }
 
-    const addItem = (id, quantity) => {
-        const ProductExist = productCarts.find(productCart=>productCart.id === id)
+    const addItem = (id, quantity, size) => {
+        const ProductExist = productCarts.find(productCart=>productCart.id === id && productCart.size === size)
         if (ProductExist.quantity > 0){
-            setProducts(productCarts.map(productCart => productCart.id === id 
+            setProducts(productCarts.map(productCart => productCart.id === id && productCart.size === size
                 ? {...ProductExist, quantity: ProductExist.quantity + 1}:
                 productCart))
     }

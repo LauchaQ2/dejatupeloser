@@ -38,13 +38,14 @@ export default function ModalCart({products}){
                     <div className='cont-cart-item' key={product.id}>
                         <img className="img-fluid img-cart mr" src={product.pictureURL} alt="imagen del producto" />
                         <p className='fs-7 mr cont-title'>{product.title}</p>
+                        <p className='fs-7 mr cont-title'>{product.size}</p>
                         <p className='fs-7 mr cont-price'>${product.quantity*product.price}</p>
                         <div className='cont-btn-counter2'>
-                        <Button className="btn-count" onClick={()=>removeItem(product.id,product.quantity)} variant="contained">
+                        <Button className="btn-count" onClick={()=>removeItem(product.id,product.quantity, product.size)} variant="contained">
                         <IoIosRemoveCircle />                                    
                         </Button>
                         <input className='input-count2' type="text" readOnly value={product.quantity}/>
-                        <Button className="btn-count" onClick={()=>addItem(product.id,product.quantity)} variant="contained">
+                        <Button className="btn-count" onClick={()=>addItem(product.id,product.quantity, product.size)} variant="contained">
                         <IoIosAddCircle />
                         </Button>
                         </div>
